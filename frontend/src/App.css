@@ -1,0 +1,63 @@
+.card {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.table-container {
+  overflow-x: auto; /* makes it scrollable on mobile */
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.stats-table th {
+  background: #f4f6f9;
+  font-weight: 600;
+}
+
+.stats-table tr:hover {
+  background: #f9f9f9;
+}
+
+.stats-table a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.stats-table a:hover {
+  text-decoration: underline;
+}
+
+.truncate {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
