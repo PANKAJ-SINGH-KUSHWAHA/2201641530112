@@ -1,36 +1,58 @@
-// logging-middleware/index.js
 const LOG_API = "http://20.244.56.144/evaluation-service/logs";
 
+const validStacks = ["frontend"];
+const validLevels = ["debug", "info", "warn", "error", "fatal"];
+const validPackages = [
+  
+  // Frontend-only
+  "component", "hook", "page", "state", "style",
+
+  // Both
+  "auth", "config", "middleware", "utils"
+];
+
 /**
- * Reusable logging function per the spec.
- * Enums restricted to lowercase values only.
- * Fails silently (no console.*).
+ * Logs an event to the Test Server
+ * @param {string} stack - "frontend"
+ * @param {string} level - "debug" | "info" | "warn" | "error" | "fatal"
+ * @param {string} pkg   - "auth" | "config" | "middleware" | "utils" | "component" | "hook" | "page" | "state" | "style"
+ * @param {string} message - Log message
  */
-export default async function Log(stack, level, pkg, message) {
-  const enums = {
-    stack: ["backend", "frontend"],
-    level: ["debug", "info", "warn", "error", "fatal"],
-    fe: ["component", "hook", "page", "state", "style"],
-    both: ["auth", "config", "middleware", "utils"]
-  };
+export async function Log(stack, level, pkg, message) {
+  if (!validStacks.includes(stack)) {
+    console.error(`Invalid stack: ${stack}`);
+    return;
+  }
+  if (!validLevels.includes(level)) {
+    console.error(`Invalid level: ${level}`);
+    return;
+  }
+  if (!validPackages.includes(pkg)) {
+    console.error(`Invalid package: ${pkg}`);
+    return;
+  }
+
+  const body = { stack, level, package: pkg, message };
 
   try {
-    const s = String(stack || "").toLowerCase();
-    const l = String(level || "").toLowerCase();
-    const p = String(pkg || "").toLowerCase();
-
-    if (!enums.stack.includes(s)) throw new Error("invalid stack");
-    if (!enums.level.includes(l)) throw new Error("invalid level");
-    if (![...enums.fe, ...enums.both].includes(p)) throw new Error("invalid package");
-
-    const body = JSON.stringify({ stack: s, level: l, package: p, message });
-
-    await fetch(LOG_API, {
+    const response = await fetch(LOG_API, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body
+      headers: {
+        "Content-Type": "application/json",
+        // 🔑 Add token if authentication is required
+        // "Authorization": "Bearer <token>"
+      },
+      body: JSON.stringify(body),
     });
-  } catch {
-    // swallow per requirements (no console logging allowed)
+
+    if (!response.ok) {
+      console.error("Failed to send log:", response.statusText);
+      return;
+    }
+
+    const data = await response.json();
+    console.log("✅ Log created:", data);
+  } catch (err) {
+    console.error("Logging error:", err.message);
   }
 }

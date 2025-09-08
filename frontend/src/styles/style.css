@@ -222,3 +222,104 @@ table tbody tr:hover {
     padding: 0.5rem;
   }
 }
+
+
+.card {
+  background: #fff;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.url-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.url-form input {
+  flex: 1;
+  min-width: 150px;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border 0.2s ease;
+}
+
+.url-form input:focus {
+  border: 1px solid #0077ff;
+  outline: none;
+}
+
+.delete-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #d9363e;
+}
+
+.btn-group {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn.add {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn.add:hover {
+  background: #ddd;
+}
+
+.btn.shorten {
+  background: #0077ff;
+  color: white;
+}
+
+.btn.shorten:hover {
+  background: #005fd1;
+  transform: translateY(-2px);
+}
+
+.error {
+  margin-top: 1rem;
+  color: #ff4d4f;
+  font-weight: 600;
+}

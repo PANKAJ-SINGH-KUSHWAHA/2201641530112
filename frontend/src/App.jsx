@@ -10,9 +10,6 @@ export default function App() {
       <main className="container">
         <Outlet />
       </main>
-      <footer className="footer">
-        Runs on http://localhost:3000 • Vanilla CSS
-      </footer>
     </>
   );
 }

@@ -1,7 +1,6 @@
 {
-  "name": "@aff/logging-middleware",
+  "name": "logging-middleware",
   "version": "1.0.0",
-  "type": "module",
   "main": "index.js",
-  "exports": "./index.js"
+  "type": "module"
 }
